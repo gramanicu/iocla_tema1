@@ -8,7 +8,7 @@ The problem statement can be found [here](https://ocw.cs.pub.ro/courses/iocla/te
   - [Table of Contents](#table-of-contents)
   - [Abstract syntax tree](#abstract-syntax-tree)
   - [Implementation](#implementation)
-    - [Algorithm (preorder)](#algorithm-preorder)
+    - [preorder](#preorder)
     - [atoi](#atoi)
     - [Other things](#other-things)
 
@@ -34,7 +34,7 @@ struct Node {
 
 Every node could either be an operand, so it was guaranteed it would have two children, or a number, when the node was a "leaf".
 
-### Algorithm (preorder)
+### preorder
 
 To evaluate the expression (AST) I used a recursive preorder traversal. Starting from the root, check if the current node represents an operator (+,-,*,/). If it's not, just return the value of the number (not before converting it from a string to an actual number). If it does, apply the same algorithm to the left, the right child, and do the operation specified by the operator between the 2 children. Then, return the result.
 
