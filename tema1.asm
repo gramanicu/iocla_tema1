@@ -16,8 +16,7 @@ preorder:
     
     ; save the registers that will be modified locally
     ; this is done in all functions, but, I never save eax register
-    ; (because he will contain the return value, so he can't be restored)
-    
+    ; (because he will contain the return value, so he can't be restored)  
     push ebx
     push ecx 
     push edx
@@ -35,13 +34,10 @@ preorder:
     ; check if the first character is an operator
     cmp ebx, 0x2B ; "+"
     je preorder_operator
-    
     cmp ebx, 0x2D ; "-"
     je preorder_operator
-    
     cmp ebx, 0x2A ; "*"
     je preorder_operator
-    
     cmp ebx, 0x2F ; "/"
     je preorder_operator
     
@@ -62,7 +58,6 @@ preorder_operator:
     call preorder
     add esp, 4
     
-    
     ; move left value to ecx
     mov ecx, eax
     
@@ -72,7 +67,7 @@ preorder_operator:
     call preorder
     add esp, 4
     
-    xchg eax, ecx ; for better workflow 
+    xchg eax, ecx ; to improve my workflow
     
     ; now eax = left_value
     ;     ecx = right_value
@@ -125,6 +120,8 @@ atoi:
     ; save the registers
     push ebx 
     push ecx
+    push edi
+
     xor ebx, ebx ; store the converted number
     mov ecx, 1   ; the sign of the number
 
@@ -160,6 +157,7 @@ atoi_while_end:
     imul eax, ecx
     
     ; restore the registers
+    pop edi
     pop ecx
     pop ebx 
 
